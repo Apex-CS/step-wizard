@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <!-- JQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+            integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+
+        <!-- JQuery Validate https://jqueryvalidation.org/documentation/ -->
+        <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js" crossorigin="anonymous"></script>
+
+        <!-- POPPER -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+
+        <!-- BOOTSTRAP 4.6.0 -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+            integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+            crossorigin="anonymous" />
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+            crossorigin="anonymous"></script>
+
+        <!-- BOOTSTRAP-DATEPICKER JS, CSS AND LOCALES -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"
+            integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"
+            integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.es.min.js"
+            integrity="sha512-5pjEAV8mgR98bRTcqwZ3An0MYSOleV04mwwYj2yw+7PBhFVf/0KcE+NEox0XrFiU5+x5t5qidmo5MgBkDD9hEw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" charset="UTF-8"></script>
+
+        <!-- BS custom file input -->
+        <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
+
+        <!-- FONT AWESOME -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+        <!-- BOOTSTRAP-SELECT (MULTIPLE) -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"
+            integrity="sha512-yDlE7vpGDP7o2eftkCiPZ+yuUyEcaBwoJoIhdXv71KZWugFqEphIS3PU60lEkFaz8RxaVsMpSvQxMBaKVwA5xg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css"
+            integrity="sha512-ARJR74swou2y0Q2V9k0GbzQ/5vJ2RBSoCWokg4zkfM29Fb3vZEQyv0iWBMW/yvKgyHSR/7D64pFMmU8nYmbRkg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/i18n/defaults-es_ES.min.js"
+            integrity="sha512-RN/dgJo36dNkKVnb1XGzePP4/8XGa/r+On4XYUy8I1C5z+9SsIEU2rFh6TrunAnddKwtXwMdI0Se8HZxd0GtiQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+        <title>STEP WIZARD EXAMPLE</title>
+    </head>
+
+    <body>
+        <div class="container">
+            <form id="myForm" method="POST" enctype="multipart/form-data" action="">
+
+                <!-- STEP 1 -->
+                <div class="row setup-content" id="step-1">
+                    <fieldset class="form-group border rounded p-3">
+                        <legend class="w-auto m-0">STEP 1 - EXAMPLE</legend>
+                        <small>
+                            The step wizard requires a div with the attributes set to <em>class="setup-content" id="step-"<b>(step number)</b>"</em>.
+                            <br>
+                            It will detect if the inputs inside the div are required and disable or enable the <b>Next button</b>.
+                            <br>
+                            NOTE: uses JQuery Validator to display the error messages on each invalid input.
+                        </small>
+                        <div class="form-group row mt-3">
+                            <div class="col-lg-4">
+                                <label for="name" class="control-label">Name:</label>
+                                <div>
+                                    <input type="text" class="form-control" name="name" required placeholder="name" id="name" 
+                                    onchange="javascript: this.value = this.value.toUpperCase();" />
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <label for="number" class="control-label">Number:</label>
+                                <div>
+                                    <input min="5" max="10" type="number" class="form-control" name="number" id="number" required placeholder="name" />
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="paterno" class="control-label">Last name (not required):</label>
+                                <div>
+                                    <input type="text" class="form-control" name="paterno" onchange="this.value = this.value.toUpperCase();" />
+                                </div>
+                            </div>
+                             <div class="col-lg-4 m-0">
+                                <label for="email">Email:</label>
+                                <input type="email" pattern="[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+" class="form-control form-control-md" name="email" id="email" 
+                                required placeholder="persona@ejemplo.com" value="" />
+                            </div>
+                        </div>
+                        <!-- BACK BUTTON NOT NEEDED IN THE FIRST STEP -->
+                        <button class="btn btn-primary nextBtn btn-lg pull-right" disabled type="button">
+                            Next
+                        </button>
+                    </fieldset>
+                </div>
+
+                <!-- STEP 2 -->
+                <div class="setup-content" id="step-2">
+                    <h2>STEP 2 NO BOOTSTRAP - BASIC CONFIG</h2>
+                    <small>
+                        The <em><b>Next</b></em> and <em><b>Back</b></em> need the class <em>class="nextBtn" and class="backBtn"</em> respectively.
+                    </small>
+                    <br>
+                    <label for="input_data">input data:</label>
+                    <input type="text" name="input_data" required id="input_data" />
+
+                    <br>
+
+                    <label for="input_data2">input data 2:</label>
+                    <input type="text" name="input_data2" required id="input_data2" />
+
+                    <!-- CAN ADD MORE INPUTS HERE -->
+                    <br>
+                    
+                    <button class="backBtn" type="button">
+                        Back
+                    </button>
+                    <button class="nextBtn" disabled type="button">
+                        Next
+                    </button>
+                </div>
+
+                <!-- STEP 3 -->
+                <div class="row setup-content" id="step-3">
+                    <fieldset class="form-group border rounded p-3">
+                        <legend class="w-auto m-0">STEP 3 - EXTRA LIBRARIES</legend>
+                        <small>
+                            This example has <em><b>Bootstrap Datepicker</b></em> and <em><b>Bootstrap Selectpicker</b></em> integrated to work with the step wizard validator, but are not required
+                        </small>
+                        <div class="form-group row mt-3">
+                            <div class="col-lg-4" id="fecha1">
+                                <label for="fecha_nacimiento" class="control-label">Birthdate:
+                                    &nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                <div class="datepicker w-100 date input-group p-0 shadow-sm">
+                                    <input type="text" name="fecha_nacimiento" id="fecha_nacimiento" placeholder="Elegir Fecha" 
+                                    required class="form-control" autocomplete="off" />
+                                    <div class="input-group-append">
+                                        <span class="input-group-text px-4"><i class="fa fa-clock-o"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <label for="color_favorito" class="control-label">Favorite color:</label>
+                                <select id="color_favorito" name="color_favorito" data-style="shadow-sm"
+                                    class="selectpicker w-100" required>
+                                    <option value="" selected hidden></option>
+                                    <option value="1">red</option>
+                                    <option value="2">blue</option>
+                                    <option value="3">green</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="curp_documento">File:</label>
+                                <div class="custom-file">
+                                    <div>
+                                        <input lang="es" required type="file" accept="image/*,.pdf"
+                                            name="curp_documento" id="curp_documento" class="custom-file-input" />
+                                        <label class="custom-file-label" for="curp_documento"
+                                            id="curp_documento_label">Upload</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- OR MORE INPUTS HERE -->
+                        </div>
+                        <button class="btn btn-primary backBtn btn-lg pull-left" type="button">
+                            Back
+                        </button>
+                        <button class="btn btn-success btn-lg pull-right" id="btn-submit" disabled type="submit">
+                            Submit
+                        </button>
+                    </fieldset>
+                </div>
+
+                <div class="error">
+                    <span></span>
+                </div>
+
+                <div class="success">
+                    <span></span>
+                </div>
+            </form>
+        </div>
+    </body>
+
+    <script src="main.js"></script>
+
+    <script>
+        (function () {
+            InitalConfig(); // ? setup the step wizard in the main.js
+        })();
+    </script>
+
+    <style>
+        .datepicker {
+            width: 300px;
+        }
+
+        .datepicker table {
+            width: 100%;
+        }
+
+        /* CUSTOMIZE INPUT TYPE FILE LABEL TEXT */
+        .custom-file-input~.custom-file-label::after {
+            content: "Search"; 
+        }
+
+        div.error span {
+            color: crimson;
+        }
+
+        div.success span {
+            color: green;
+        }
+
+        label.error {
+            color: crimson;
+            margin: 0;
+        }
+    </style>
+
+    <footer></footer>
+
+</html>
