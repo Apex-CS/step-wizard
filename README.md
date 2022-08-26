@@ -6,6 +6,11 @@ When the JavaScript checks the validation is when the input lost focus (on blur)
 
 NOTE: uses <b>JQuery Validator</b> library to display the error messages on each invalid input.
 
+### DEMO
+
+NOTE: the demo has some extra code and adjustments to make it work in StackBlitz page editor.<br>
+<a href="https://stackblitz.com/edit/js-hudkxt?file=index.html">See demo</a>
+
 ### HTML Config
 The step wizard requires a div or any other container with the attributes set to <em>class="setup-content" id="step-"<b>(step number)</b>"</em>.
 It will detect if the inputs inside the div are required and disable or enable the <b>Next button</b>.
